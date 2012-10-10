@@ -1,0 +1,24 @@
+name: search
+version: 0.0.1
+cabal-version: >=1.2
+build-type: Simple
+license: AllRightsReserved
+license-file: ""
+synopsis: Simple search engine
+data-dir: ""
+ 
+executable search
+    build-depends: QuickCheck -any, base -any, containers -any
+    main-is: Main.hs
+    buildable: True
+    extensions: GADTs
+    hs-source-dirs: src
+    other-modules: Change AllDifferent Domain
+ 
+test-suite test-search
+    build-depends: QuickCheck -any, base -any, containers -any
+    type: exitcode-stdio-1.0
+    main-is: Main.hs
+    buildable: True
+    cpp-options: -DMAIN_FUNCTION=testMain
+    hs-source-dirs: src

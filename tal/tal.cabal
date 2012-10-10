@@ -1,0 +1,24 @@
+name: tal
+version: 0.0.1
+cabal-version: >=1.2
+build-type: Simple
+license: AllRightsReserved
+license-file: ""
+synopsis: tal
+description: Type assembly language
+data-dir: ""
+ 
+executable tal
+    build-depends: QuickCheck -any, base -any
+    main-is: Main.hs
+    buildable: True
+    hs-source-dirs: src
+    other-modules: Typesystem Tal
+ 
+test-suite test-tal
+    build-depends: QuickCheck -any, base -any
+    type: exitcode-stdio-1.0
+    main-is: Main.hs
+    buildable: True
+    cpp-options: -DMAIN_FUNCTION=testMain
+    hs-source-dirs: src
