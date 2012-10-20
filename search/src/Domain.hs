@@ -17,7 +17,8 @@ module Domain (
   Constraint(..),
   VariableMap,
   Domain,
-  solve
+  solve,
+  without
 
 ) where
 
@@ -35,10 +36,7 @@ data SearchSpace = SearchSpace {
     constraints :: [(Constraint, [String])]
     }
 
-data Constraint = Constraint {
-    valid :: [Domain] -> Bool,
-    propagate :: [Domain] -> [Domain]
-    }
+type Constraint = [Domain] -> [Domain]
 
 instance Eq SearchSpace where
   s1 == s2 = vars s1 == vars s2
@@ -48,12 +46,6 @@ type Solution = [(String, Int)]
 empty :: SearchSpace -> Bool
 empty s = or (map null (Map.elems $ vars s))
 
-consistent :: SearchSpace -> Bool
-consistent s = and $ map (valid' (vars s)) (constraints s)
-
-valid' :: VariableMap -> (Constraint, [String]) -> Bool
-valid' m (c,names) = valid c (map (\s -> lookupDomain s m) names)
-
 lookupDomain :: String -> VariableMap -> Domain
 lookupDomain s m = case lookupVar s m of
     Nothing -> []
@@ -61,9 +53,10 @@ lookupDomain s m = case lookupVar s m of
 
 solve :: SearchSpace -> [Solution]
 solve s = let s' = fixPoint propagateConstraints s in
-    case asSolution s' of
-        Nothing -> map xxx (guesses s')
-        Just sol -> [sol]
+    if empty s' then [] else
+        case asSolution s' of
+            Nothing -> concat (map solve (makeGuess s))
+            Just sol -> [sol]
 
 -- fixPoint propagateConstraints
 
@@ -75,26 +68,34 @@ asSolution' [] = Just []
 asSolution' ((s,[x]):lst) = fmap ((:) (s,x)) (asSolution' lst)
 asSolution' _ = Nothing
 
-guesses :: SearchSpace -> [(String,Int)]
-guesses s = concat $ map expand (Map.toList (vars s))
+makeGuess :: SearchSpace -> [SearchSpace]
+makeGuess s = let (name, value) = guess s in
+    [withValue s name value, withoutValue s name value]
 
-expand :: (String,[Int]) -> [(String,Int)]
-expand (_,[]) = []
-expand (_,[_]) = []
-expand (name,lst) = map (\d -> (name,d)) lst
+withValue :: SearchSpace -> String -> Int -> SearchSpace
+withValue s name value = SearchSpace (updateVar name value (vars s)) (constraints s)
 
-guess :: (String,[Int]) -> Maybe (String,Int)
-guess s = concat $ map expand (Map.toList (vars s))
+withoutValue :: SearchSpace -> String -> Int -> SearchSpace
+withoutValue s name value = SearchSpace
+    (Map.insert name (without value (lookupDomain name (vars s))) (vars s))
+    (constraints s)
 
-first :: [a] -> Maybe a
-first [] = Nothing
-first (x:_) = x
+without :: (Eq a) => a -> [a] -> [a]
+without _ [] = []
+without x (y:xs) = if (x == y) then xs else y : (without x xs)
+
+guess :: SearchSpace -> (String,Int)
+guess s = guess' (Map.toList (vars s))
+
+guess' :: [(String,[a])] -> (String, a)
+guess' ((name,v1:v2:_):_) = (name, v1)
+guess' (_:next) = guess' next
 
 propagateConstraints :: SearchSpace -> SearchSpace
 propagateConstraints s = foldr propagateConstraint s (constraints s)
 
 propagateConstraint :: (Constraint, [String]) -> SearchSpace -> SearchSpace
-propagateConstraint (c, names) s = let d = propagate c (map (\name -> lookupDomain name (vars s)) names) in
+propagateConstraint (c, names) s = let d = c (map (\name -> lookupDomain name (vars s)) names) in
     SearchSpace (updateVars (zip names d) (vars s)) (constraints s)
 
 updateVar :: (Ord k) => k -> v -> Map.Map k [v] -> Map.Map k [v]

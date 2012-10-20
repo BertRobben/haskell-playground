@@ -13,7 +13,7 @@ executable search
     buildable: True
     extensions: GADTs
     hs-source-dirs: src
-    other-modules: Change AllDifferent Domain
+    other-modules: Abc Change AllDifferent Domain
  
 test-suite test-search
     build-depends: QuickCheck -any, base -any, containers -any

@@ -19,6 +19,7 @@ module Main (
 
 import Domain
 import AllDifferent
+import Abc
 import qualified Data.Map as Map
 
 data SampleSpace = SampleSpace { one::[Int], two::[Int], three::[Int] } deriving Show
@@ -32,4 +33,4 @@ sampleSpace n = SearchSpace
 
 -- Hello World
 main = do
-    putStrLn (show $ vars $ solve (sampleSpace 3))
+    putStrLn (show $ solve (sampleSpace 3))
