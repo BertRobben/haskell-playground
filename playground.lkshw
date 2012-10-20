@@ -1,0 +1,10 @@
+Version of workspace file format:
+               1
+Time of storage:
+               "Sat Oct 20 21:46:07 W. Europe Daylight Time 2012"
+Name of the workspace:
+               "playground"
+File paths of contained packages:
+               ["search\\search.cabal"]
+Maybe file path of an active package:
+               Just "search\\search.cabal"
