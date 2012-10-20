@@ -1,0 +1,24 @@
+name: projecteuler
+version: 0.0.1
+cabal-version: >=1.2
+build-type: Simple
+license: AllRightsReserved
+license-file: ""
+synopsis: solution of project euler problems
+description: See projecteuler.net
+data-dir: ""
+ 
+executable projecteuler
+    build-depends: QuickCheck -any, base -any
+    main-is: Main.hs
+    buildable: True
+    hs-source-dirs: src
+    other-modules: Problem4 Problem3 Problem2 Problem1
+ 
+test-suite test-projecteuler
+    build-depends: QuickCheck -any, base -any
+    type: exitcode-stdio-1.0
+    main-is: Main.hs
+    buildable: True
+    cpp-options: -DMAIN_FUNCTION=testMain
+    hs-source-dirs: src
