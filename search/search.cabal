@@ -1,5 +1,5 @@
 name: search
-version: 0.0.1
+version: 0.0.2
 cabal-version: >=1.2
 build-type: Simple
 license: AllRightsReserved
@@ -13,7 +13,8 @@ executable search
     buildable: True
     extensions: GADTs
     hs-source-dirs: src
-    other-modules: Abc Change AllDifferent Domain
+    other-modules: Logical Constraint.AllDifferent Constraint.Sum
+                   Anagram Sudoku SearchSpace Domain Change Abc
  
 test-suite test-search
     build-depends: QuickCheck -any, base -any, containers -any
