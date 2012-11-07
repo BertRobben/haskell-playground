@@ -1,0 +1,18 @@
+Version of session file format:
+               1
+Time of storage:
+               "Sat Oct 20 22:42:02 W. Europe Daylight Time 2012"
+Layout:        VerticalP (TerminalP {paneGroups = fromList [], paneTabs = Just TopP, currentPage = 0, detachedId = Nothing, detachedSize = Nothing}) (HorizontalP (TerminalP {paneGroups = fromList [("Browser",HorizontalP (TerminalP {paneGroups = fromList [], paneTabs = Nothing, currentPage = 0, detachedId = Nothing, detachedSize = Nothing}) (HorizontalP (TerminalP {paneGroups = fromList [], paneTabs = Nothing, currentPage = 0, detachedId = Nothing, detachedSize = Nothing}) (TerminalP {paneGroups = fromList [], paneTabs = Nothing, currentPage = 0, detachedId = Nothing, detachedSize = Nothing}) 161) 111)], paneTabs = Just BottomP, currentPage = 0, detachedId = Nothing, detachedSize = Nothing}) (TerminalP {paneGroups = fromList [], paneTabs = Nothing, currentPage = 0, detachedId = Nothing, detachedSize = Nothing}) 412) 808
+Population:    [(Just (BufferSt (BufferState "C:\\Users\\Bert\\Documents\\GitHub\\haskell-playground\\search\\src\\Abc.hs" 1191)),[SplitP LeftP]),(Just (ErrorsSt ErrorsState),[SplitP RightP,SplitP TopP]),(Just (FilesSt FilesState),[SplitP RightP,SplitP TopP]),(Just (InfoSt (InfoState Nothing)),[SplitP RightP,SplitP TopP,GroupP "Browser",SplitP BottomP,SplitP BottomP]),(Just (LogSt LogState),[SplitP RightP,SplitP BottomP]),(Just (ModulesSt (ModulesState 286 (PackageScope False,False) (Just (ModuleName ["Abc"]),Nothing) (ExpanderState {packageExp = ([],[]), packageExpNoBlack = ([],[]), packageDExp = ([],[]), packageDExpNoBlack = ([],[]), workspaceExp = ([],[]), workspaceExpNoBlack = ([],[]), workspaceDExp = ([],[]), workspaceDExpNoBlack = ([],[]), systemExp = ([],[]), systemExpNoBlack = ([],[])}))),[SplitP RightP,SplitP TopP,GroupP "Browser",SplitP BottomP,SplitP TopP]),(Just (WorkspaceSt WorkspaceState),[SplitP RightP,SplitP TopP,GroupP "Browser",SplitP TopP])]
+Window size:   (1456,783)
+Completion size:
+               (750,400)
+Workspace:     Just "C:\\Users\\Bert\\Documents\\GitHub\\haskell-playground\\playground.lkshw"
+Active pane:   Just "Abc.hs"
+Toolbar visible:
+               True
+FindbarState:  (True,FindState {entryStr = "", entryHist = [""], replaceStr = "", replaceHist = [], caseSensitive = False, entireWord = False, wrapAround = False, regex = False, lineNr = 1})
+Recently opened files:
+               ["C:\\Users\\Bert\\Documents\\GitHub\\haskell-playground\\projecteuler\\src\\Problem1.hs","C:\\Users\\Bert\\Documents\\GitHub\\haskell-playground\\projecteuler\\src\\Problem2.hs","C:\\Users\\Bert\\Documents\\GitHub\\haskell-playground\\projecteuler\\src\\Problem3.hs","C:\\Users\\Bert\\Documents\\GitHub\\haskell-playground\\projecteuler\\src\\Problem4.hs","C:\\Users\\Bert\\.leksah-0.12\\leksah-welcome\\src\\Main.hs","C:\\Users\\Bert\\Documents\\GitHub\\haskell-playground\\projecteuler\\src\\Main.hs"]
+Recently opened workspaces:
+               ["C:\\Users\\Bert\\leksah.lkshw"]
